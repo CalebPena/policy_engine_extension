@@ -25,7 +25,10 @@ from features.completion import Completion
 
 
 load_dotenv()
-debug = os.environ["DEBUG"] == "True"
+try:
+    debug = os.environ["DEBUG"] == "True"
+except KeyError:
+    debug = False
 
 server = LanguageServer("policy_engine", "v0.1", text_document_sync_kind=TextDocumentSyncKind.Full)
 
@@ -99,6 +102,7 @@ def definitions(params: DefinitionParams):
 @server.feature(TEXT_DOCUMENT_HOVER)
 def hover(params: HoverParams):
     return Hover(params, server, variables).hover()
+
 
 if __name__ == "__main__":
     if debug:

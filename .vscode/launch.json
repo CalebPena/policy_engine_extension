@@ -20,7 +20,7 @@
         },
         {
             "name": "Python Attach",
-            "type": "debugpy",
+            "type": "python",
             "request": "attach",
             "processId": "${command:pickProcess}",
             "justMyCode": false,
@@ -32,7 +32,7 @@
         },
         {
             "name": "Python Config for test explorer (hidden)",
-            "type": "debugpy",
+            "type": "python",
             "request": "launch",
             "console": "integratedTerminal",
             "purpose": ["debug-test"],
@@ -60,7 +60,7 @@
         },
         {
             "name": "Python debug server (hidden)",
-            "type": "debugpy",
+            "type": "python",
             "request": "attach",
             "listen": { "host": "localhost", "port": 5678 },
             "justMyCode": true,
