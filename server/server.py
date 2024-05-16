@@ -100,7 +100,8 @@ def definitions(params: DefinitionParams):
 def hover(params: HoverParams):
     return Hover(params, server, variables).hover()
 
-if debug:
-    server.start_tcp("127.0.0.1", 9090)
-else:
-    server.start_io()
+if __name__ == "__main__":
+    if debug:
+        server.start_tcp("127.0.0.1", 9090)
+    else:
+        server.start_io()
