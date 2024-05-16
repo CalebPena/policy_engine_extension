@@ -1,0 +1,159 @@
+{
+    "name": "policy_engine_lsp",
+    "displayName": "Policy Engine",
+    "description": "Autocompletion, hover, and go to definition suport for Policy Engine",
+    "version": "1.0.0",
+    "preview": true,
+    "serverInfo": {
+        "name": "Policy Engine",
+        "module": "policy_engine_lsp"
+    },
+    "publisher": "CalebPena",
+    "license": "MIT",
+    "homepage": "https://github.com/CalebPena/policy_engine_extension",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/CalebPena/policy_engine_extension.git"
+    },
+    "bugs": {
+        "url": "https://github.com/CalebPena/policy_engine_extension/issues"
+    },
+    "galleryBanner": {
+        "color": "#1e415e",
+        "theme": "dark"
+    },
+    "keywords": [
+        "python",
+        "yaml",
+        "policy",
+        "engine",
+        "benefits"
+    ],
+    "engines": {
+        "vscode": "^1.78.0"
+    },
+    "categories": [
+        "Snippets",
+        "Programming Languages",
+        "Other"
+    ],
+    "extensionDependencies": [
+        "ms-python.python"
+    ],
+    "capabilities": {
+        "virtualWorkspaces": {
+            "supported": false,
+            "description": "Virtual Workspaces are not supported with Policy Engine."
+        }
+    },
+    "activationEvents": [
+        "onLanguage:python",
+        "onLanguage:yaml",
+        "workspaceContains:*.py",
+        "workspaceContains:*.yaml"
+    ],
+    "main": "./dist/extension.js",
+    "scripts": {
+        "vscode:prepublish": "npm run package",
+        "compile": "webpack",
+        "watch": "webpack --watch",
+        "package": "webpack --mode production --devtool source-map --config ./webpack.config.js",
+        "lint": "eslint src --ext ts",
+        "format-check": "prettier --check 'src/**/*.ts' 'build/**/*.yml' '.github/**/*.yml'",
+        "vsce-package": "vsce package -o policy_engine_lsp.vsix"
+    },
+    "contributes": {
+        "configuration": {
+            "properties": {
+                "policy_engine_lsp.args": {
+                    "default": [],
+                    "description": "Arguments passed in. Each argument is a separate item in the array.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "scope": "resource",
+                    "type": "array"
+                },
+                "policy_engine_lsp.path": {
+                    "default": [],
+                    "description": "When set to a path to policy_engine_lsp binary, extension will use that. NOTE: Using this option may slowdown server response time.",
+                    "scope": "resource",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "policy_engine_lsp.importStrategy": {
+                    "default": "useBundled",
+                    "description": "Defines where `policy_engine_lsp` is imported from. This setting may be ignored if `policy_engine_lsp.path` is set.",
+                    "enum": [
+                        "useBundled",
+                        "fromEnvironment"
+                    ],
+                    "enumDescriptions": [
+                        "Always use the bundled version of `policy_engine_lsp`.",
+                        "Use `policy_engine_lsp` from environment, fallback to bundled version only if `policy_engine_lsp` not available in the environment."
+                    ],
+                    "scope": "window",
+                    "type": "string"
+                },
+                "policy_engine_lsp.interpreter": {
+                    "default": [],
+                    "description": "When set to a path to python executable, extension will use that to launch the server and any subprocess.",
+                    "scope": "resource",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "policy_engine_lsp.showNotifications": {
+                    "default": "off",
+                    "description": "Controls when notifications are shown by this extension.",
+                    "enum": [
+                        "off",
+                        "onError",
+                        "onWarning",
+                        "always"
+                    ],
+                    "enumDescriptions": [
+                        "All notifications are turned off, any errors or warning are still available in the logs.",
+                        "Notifications are shown only in the case of an error.",
+                        "Notifications are shown for errors and warnings.",
+                        "Notifications are show for anything that the server chooses to show."
+                    ],
+                    "scope": "machine",
+                    "type": "string"
+                }
+            }
+        },
+        "commands": [
+            {
+                "title": "Restart Server",
+                "category": "Policy Engine",
+                "command": "policy_engine_lsp.restart"
+            }
+        ]
+    },
+    "dependencies": {
+        "@vscode/python-extension": "^1.0.5",
+        "fs-extra": "^11.2.0",
+        "vscode-languageclient": "^8.1.0"
+    },
+    "devDependencies": {
+        "@types/fs-extra": "^11.0.4",
+        "@types/vscode": "1.78.0",
+        "@types/glob": "^8.1.0",
+        "@types/node": "16.x",
+        "@typescript-eslint/eslint-plugin": "^6.17.0",
+        "@typescript-eslint/parser": "^6.17.0",
+        "@vscode/test-electron": "^2.3.8",
+        "@vscode/vsce": "^2.22.0",
+        "eslint": "^8.56.0",
+        "glob": "^10.3.10",
+        "prettier": "^3.1.1",
+        "typescript": "^5.3.3",
+        "ts-loader": "^9.5.1",
+        "webpack": "^5.89.0",
+        "webpack-cli": "^5.1.4"
+    }
+}
