@@ -62,12 +62,8 @@ async function createServer(
             : [
                   { scheme: 'file', language: 'python' },
                   { scheme: 'untitled', language: 'python' },
-                  { scheme: 'vscode-notebook', language: 'python' },
-                  { scheme: 'vscode-notebook-cell', language: 'python' },
                   { scheme: 'file', language: 'yaml' },
                   { scheme: 'untitled', language: 'yaml' },
-                  { scheme: 'vscode-notebook', language: 'yaml' },
-                  { scheme: 'vscode-notebook-cell', language: 'yaml' },
               ],
         outputChannel: outputChannel,
         traceOutputChannel: outputChannel,
