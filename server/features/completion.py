@@ -49,8 +49,8 @@ class Completion:
         line = self._line()
         cur_char_pos = self.params.position.character
 
-        # check the current character, the 2 characters before
-        char_range = slice(max(cur_char_pos - 3, 0), min(cur_char_pos, len(line)))
+        # check the current character, the characters before
+        char_range = slice(max(cur_char_pos - 1, 0), min(cur_char_pos, len(line)))
 
         chars = line[char_range]
 

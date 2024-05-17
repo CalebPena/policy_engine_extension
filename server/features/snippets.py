@@ -27,7 +27,7 @@ python_snippets = (
                 "\tdefinition_period = ${4:YEAR}",
                 '\tlabel = "${5:label}"',
                 "",
-                "\tdef formula(${6:spm_unit}, period, parameters):",
+                "\tdef formula(${6:tax_unit}, period, parameters):",
                 "\t\t${7:return 0}",
             ]
         ),
@@ -37,9 +37,9 @@ python_snippets = (
         "Policy Engine Variable formula definition",
         "def formula(${6:spm_unit}, period, parameters):\n\t${7:return 0}",
     ),
-    Snippet("pe_spm", "Get Policy Engine SPM unit variable", 'spm_unit("${1:variable_name}", period)'),
-    Snippet("pe_tax", "Get Policy Engine tax unit variable", 'tax_unit("${1:variable_name}", period)'),
-    Snippet("pe_person", "Get Policy Engine person variable", 'person("${1:variable_name}", period)'),
+    Snippet("pe_spm", "Get Policy Engine SPM unit variable", 'spm_unit(${1:variable_name}, period)'),
+    Snippet("pe_tax", "Get Policy Engine tax unit variable", 'tax_unit(${1:variable_name}, period)'),
+    Snippet("pe_person", "Get Policy Engine person variable", 'person(${1:variable_name}, period)'),
     Snippet("pe_parameter", "Get Policy Engine parameter", "parameters(period).${1:gov.}${2}"),
 )
 
