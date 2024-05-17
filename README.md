@@ -25,6 +25,6 @@ Autocompletion, snippets, hover, and go to definition suport for [Policy Engine]
 
 # Images:
 
-![Autocompletion image](https://github.com/CalebPena/policy_engine_extension/blob/main/docs/images/completion.png)
-![Hover image](https://github.com/CalebPena/policy_engine_extension/blob/main/docs/images/hover.png)
-![Definition image](https://github.com/CalebPena/policy_engine_extension/blob/main/docs/images/definition.png)
+![Autocompletion image](./docs/images/completion.png)
+![Hover image](./docs/images/hover.png)
+![Definition image](./docs/images/definition.png)
