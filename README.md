@@ -1,6 +1,6 @@
 # Policy Engine
 
-Autocompletion, snippets, hover, and go to definition suport for [Policy Engine](https://github.com/PolicyEngine)
+Autocompletion, snippets, hover, and go to definition support for [Policy Engine](https://github.com/PolicyEngine)
 
 ## Snippet List:
 
