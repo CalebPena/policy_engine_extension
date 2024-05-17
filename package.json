@@ -1,12 +1,12 @@
 {
-    "name": "policy_engine_lsp",
+    "name": "policy-engine-lsp",
     "displayName": "Policy Engine",
     "description": "Autocompletion, hover, and go to definition suport for Policy Engine",
     "version": "1.0.0",
     "preview": true,
     "serverInfo": {
         "name": "Policy Engine",
-        "module": "policy_engine_lsp"
+        "module": "policy-engine-lsp"
     },
     "publisher": "CalebPena",
     "license": "MIT",
@@ -60,12 +60,12 @@
         "package": "webpack --mode production --devtool source-map --config ./webpack.config.js",
         "lint": "eslint src --ext ts",
         "format-check": "prettier --check 'src/**/*.ts' 'build/**/*.yml' '.github/**/*.yml'",
-        "vsce-package": "vsce package -o policy_engine_lsp.vsix"
+        "vsce-package": "vsce package -o policy-engine-lsp.vsix"
     },
     "contributes": {
         "configuration": {
             "properties": {
-                "policy_engine_lsp.args": {
+                "policy-engine-lsp.args": {
                     "default": [],
                     "description": "Arguments passed in. Each argument is a separate item in the array.",
                     "items": {
@@ -74,30 +74,30 @@
                     "scope": "resource",
                     "type": "array"
                 },
-                "policy_engine_lsp.path": {
+                "policy-engine-lsp.path": {
                     "default": [],
-                    "description": "When set to a path to policy_engine_lsp binary, extension will use that. NOTE: Using this option may slowdown server response time.",
+                    "description": "When set to a path to policy-engine-lsp binary, extension will use that. NOTE: Using this option may slowdown server response time.",
                     "scope": "resource",
                     "items": {
                         "type": "string"
                     },
                     "type": "array"
                 },
-                "policy_engine_lsp.importStrategy": {
+                "policy-engine-lsp.importStrategy": {
                     "default": "useBundled",
-                    "description": "Defines where `policy_engine_lsp` is imported from. This setting may be ignored if `policy_engine_lsp.path` is set.",
+                    "description": "Defines where `policy-engine-lsp` is imported from. This setting may be ignored if `policy-engine-lsp.path` is set.",
                     "enum": [
                         "useBundled",
                         "fromEnvironment"
                     ],
                     "enumDescriptions": [
-                        "Always use the bundled version of `policy_engine_lsp`.",
-                        "Use `policy_engine_lsp` from environment, fallback to bundled version only if `policy_engine_lsp` not available in the environment."
+                        "Always use the bundled version of `policy-engine-lsp`.",
+                        "Use `policy-engine-lsp` from environment, fallback to bundled version only if `policy-engine-lsp` not available in the environment."
                     ],
                     "scope": "window",
                     "type": "string"
                 },
-                "policy_engine_lsp.interpreter": {
+                "policy-engine-lsp.interpreter": {
                     "default": [],
                     "description": "When set to a path to python executable, extension will use that to launch the server and any subprocess.",
                     "scope": "resource",
@@ -106,7 +106,7 @@
                     },
                     "type": "array"
                 },
-                "policy_engine_lsp.showNotifications": {
+                "policy-engine-lsp.showNotifications": {
                     "default": "off",
                     "description": "Controls when notifications are shown by this extension.",
                     "enum": [
@@ -130,7 +130,7 @@
             {
                 "title": "Restart Server",
                 "category": "Policy Engine",
-                "command": "policy_engine_lsp.restart"
+                "command": "policy-engine-lsp.restart"
             }
         ]
     },
