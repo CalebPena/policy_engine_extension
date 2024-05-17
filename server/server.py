@@ -95,14 +95,14 @@ def get_all_variables_in_dir(root_dir: str):
 
 
 def pathify(uri: str):
-    path_components = urlparse(uri).path.split('/')
+    path_components = urlparse(uri).path.split("/")
     path = os.path.join(*path_components)
-    return unquote(path)
+    return pathlib.Path(unquote(path)).absolute()
 
 
 @server.feature(INITIALIZE)
 def initialize(params: InitializeParams):
-    server.send_notification('error', 'no workspace selected')
+    server.send_notification("error", "no workspace selected")
     if params.workspace_folders is None:
         if params.root_uri is not None:
             get_all_variables_in_dir(pathify(params.root_uri))
@@ -110,7 +110,6 @@ def initialize(params: InitializeParams):
 
     for folder in params.workspace_folders:
         get_all_variables_in_dir(pathify(folder.uri))
-    print(len(variables))
 
 
 @server.feature(TEXT_DOCUMENT_DID_CHANGE)
@@ -118,7 +117,7 @@ def text_document_change(params: DidChangeTextDocumentParams):
     variables.update(params.text_document.uri, params.content_changes[0].text)
 
 
-@server.feature(TEXT_DOCUMENT_COMPLETION, options=CompletionOptions(trigger_characters=['-', '"', "'"]))
+@server.feature(TEXT_DOCUMENT_COMPLETION, options=CompletionOptions(trigger_characters=["-", '"', "'"]))
 def completions(params: CompletionParams):
     return Completion(params, server, variables).completion()
 
@@ -133,8 +132,7 @@ def hover(params: HoverParams):
     return Hover(params, server, variables).hover()
 
 
-if __name__ == "__main__":
-    if debug:
-        server.start_tcp("127.0.0.1", 9090)
-    else:
-        server.start_io()
+if debug:
+    server.start_tcp("127.0.0.1", 9090)
+else:
+    server.start_io()
