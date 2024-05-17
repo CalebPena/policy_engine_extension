@@ -63,6 +63,7 @@ def should_ignore(ignore_list: list[str], path: str):
 
 
 def get_all_variables_in_dir(root_dir: str):
+    print(root_dir, '\n')
     ignore_files: list[str] = []
     try:
         with open(os.path.join(root_dir, ".gitignore"), "r") as f:
@@ -72,6 +73,7 @@ def get_all_variables_in_dir(root_dir: str):
         pass
 
     for subdir, dir, files in os.walk(root_dir):
+        print(dir, files)
         dir[:] = [d for d in dir if not should_ignore(ignore_files, os.path.relpath(os.path.join(subdir, d), root_dir))]
 
         for file in files:
@@ -97,7 +99,7 @@ def get_all_variables_in_dir(root_dir: str):
 def pathify(uri: str):
     path_components = urlparse(uri).path.split("/")
     path = os.path.join(*path_components)
-    return pathlib.Path(unquote(path)).absolute()
+    return pathlib.Path('/', unquote(path)).absolute()
 
 
 @server.feature(INITIALIZE)
