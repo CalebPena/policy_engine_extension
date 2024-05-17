@@ -1,4 +1,26 @@
-from urllib.parse import urlparse
+from urllib.parse import urlparse, unquote
+import os
+import pathlib
+import fnmatch
+import sys
+
+
+def update_sys_path(path_to_add: str, strategy: str) -> None:
+    """Add given path to `sys.path`."""
+    if path_to_add not in sys.path and os.path.isdir(path_to_add):
+        if strategy == "useBundled":
+            sys.path.insert(0, path_to_add)
+        elif strategy == "fromEnvironment":
+            sys.path.append(path_to_add)
+
+
+# Ensure that we can import LSP libraries, and other bundled libraries.
+update_sys_path(
+    os.fspath(pathlib.Path(__file__).parent / "libs"),
+    os.getenv("LS_IMPORT_STRATEGY", "useBundled"),
+)
+
+
 from pygls.server import LanguageServer
 from lsprotocol.types import (
     INITIALIZE,
@@ -14,9 +36,6 @@ from lsprotocol.types import (
     InitializeParams,
     TextDocumentSyncKind,
 )
-import os
-import pathlib
-import fnmatch
 from dotenv import load_dotenv
 from features.definition import Definition
 from features.hover import Hover
@@ -75,13 +94,23 @@ def get_all_variables_in_dir(root_dir: str):
             variables.update(uri, text)
 
 
+def pathify(uri: str):
+    path_components = urlparse(uri).path.split('/')
+    path = os.path.join(*path_components)
+    return unquote(path)
+
+
 @server.feature(INITIALIZE)
 def initialize(params: InitializeParams):
+    server.send_notification('error', 'no workspace selected')
     if params.workspace_folders is None:
+        if params.root_uri is not None:
+            get_all_variables_in_dir(pathify(params.root_uri))
         return
 
     for folder in params.workspace_folders:
-        get_all_variables_in_dir(urlparse(folder.uri).path)
+        get_all_variables_in_dir(pathify(folder.uri))
+    print(len(variables))
 
 
 @server.feature(TEXT_DOCUMENT_DID_CHANGE)

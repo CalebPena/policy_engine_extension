@@ -1,5 +1,13 @@
 venv/
-__pycache__
 .env
 node_modules/
 dist/
+.nox/
+out
+.vscode-test/
+*.vsix
+.vs/
+server/libs/
+**/__pycache__
+**/.pytest_cache
+**/.vs

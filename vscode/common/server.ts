@@ -1,5 +1,5 @@
 import * as fsapi from 'fs-extra';
-import { Disposable, env, LogOutputChannel } from 'vscode';
+import { Disposable, env, LogOutputChannel, workspace as Workspace } from 'vscode';
 import { State } from 'vscode-languageclient';
 import {
     LanguageClient,
@@ -68,6 +68,7 @@ async function createServer(
         outputChannel: outputChannel,
         traceOutputChannel: outputChannel,
         revealOutputChannelOn: RevealOutputChannelOn.Never,
+        workspaceFolder: Workspace.workspaceFolders?.[0],
         initializationOptions,
     };
 

@@ -37,7 +37,8 @@
             "console": "integratedTerminal",
             "purpose": ["debug-test"],
             "justMyCode": true,
-            "presentation": {
+            "env": { "PYTHONPATH": "${workspaceRoot}" },
+            "resentation": {
                 "hidden": true,
                 "group": "",
                 "order": 4
