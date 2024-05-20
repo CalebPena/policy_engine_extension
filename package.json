@@ -2,8 +2,7 @@
     "name": "policy-engine-lsp",
     "displayName": "Policy Engine",
     "description": "Autocompletion, hover, and go to definition suport for Policy Engine",
-    "version": "1.0.1",
-    "preview": true,
+    "version": "1.0.2",
     "serverInfo": {
         "name": "Policy Engine",
         "module": "policy-engine-lsp"
